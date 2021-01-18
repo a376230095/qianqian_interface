@@ -1,12 +1,13 @@
 #-*- coding: utf-8 -*-
+from common.get_config import GetConfig
 from get_token import get_token
 import requests
 
 
 
-
+contact_secret = GetConfig().get_value("weixin", "contact_secret")
 # 增加成员
-url=f"https://qyapi.weixin.qq.com/cgi-bin/user/create?access_token={get_token()}"
+url=f"https://qyapi.weixin.qq.com/cgi-bin/user/create?access_token={get_token(contact_secret)}"
 data_request={
     "userid": "zhangsan",
     "name": "张三",
