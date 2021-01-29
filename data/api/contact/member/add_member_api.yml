@@ -1,0 +1,11 @@
+"method": "post"
+"url": "https://qyapi.weixin.qq.com/cgi-bin/user/create"
+# yaml格式里面不能有变量
+"params": "access_token=xxxxx"
+#"params": token
+"json":
+    "userid": "zhangsan"
+    "name": "张三"
+    "alias": "jackzhang"
+    "mobile": "+86 13800000000"
+    "department": [1, 2]
