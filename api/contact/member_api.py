@@ -6,8 +6,10 @@ from pprint import pprint
 import requests
 import yaml
 
+
 from api.base_api import BaseApi
 from common.get_config import GetConfig
+from common.get_log import log
 
 
 class Member(BaseApi):
@@ -45,16 +47,26 @@ class Member(BaseApi):
     #     res=self.get_res(request_data)
     #     return res
 
+    # # 增加成员
+    # def add_member(self):
+    #     contact_secret = GetConfig().get_value("weixin", "contact_secret")
+    #     yaml_path=os.path.join(self.base_path,"data/api/contact/member/add_member_api.yml")
+    #     with open(yaml_path,encoding="utf-8") as f:
+    #         # 拿过来的字典需要完善，去完善params参数
+    #         request_data=yaml.safe_load(f)
+    #         # 改变params参数的value值
+    #         request_data["params"]=f"access_token={self.get_token(contact_secret)}"
+    #         pprint(request_data)
+    #     res=self.get_res(request_data)
+    #     return res
+
     # 增加成员
     def add_member(self):
         contact_secret = GetConfig().get_value("weixin", "contact_secret")
-        yaml_path=os.path.join(self.base_path,"data/api/contact/member/add_member_api.yml")
-        with open(yaml_path,encoding="utf-8") as f:
-            # 拿过来的字典需要完善，去完善params参数
-            request_data=yaml.safe_load(f)
-            # 改变params参数的value值
-            request_data["params"]=f"access_token={self.get_token(contact_secret)}"
-            pprint(request_data)
+        yaml_path="data/api/contact/member/add_member_bianliang_api.yml"
+        data={"token":f"{self.get_token(contact_secret)}","userid":"tong1234","name":"tong",
+              "mobile":"13172661165","department":[1,2]}
+        request_data=self.template(yaml_path,data)
         res=self.get_res(request_data)
         return res
 

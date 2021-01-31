@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 # 这是父类，其他类去继承他
 import os
+from string import Template
 
 import requests
+import yaml
 
 
 class BaseApi():
@@ -47,6 +49,50 @@ class BaseApi():
         #                      params="corpid=ID&corpsecret=SECRET",json=None)
         return res
 
+    # 读取yaml文件
+    def get_yaml(self,path):
+        yaml_path = os.path.join(self.base_path,path)
+        with open(yaml_path,encoding="utf-8") as f:
+            # 拿过来的字典需要完善，去完善params参数
+            request_data=yaml.safe_load(f.read())
+        return request_data
+
+    # 使用模板技术，让yaml文件可以使用变量
+    def template(self,path,data:dict):
+        # 函数需要传两个值，一个是路径，yaml文件的路径
+        # 函数需要传两个值，一个是字典data，是需要改变的变量的值
+        # 比如要改变yaml文件的5个变量值，就需要写5个key和value的值
+        # token、userid、mobile、name、department
+        # key就是需要改变的变量名，value就是改变成什么样子
+        # data={"token":"1234","userid":"tong1234","name":"tong",
+        #       "mobile":"13172661165","department":[1,2]}
+        # 导入这个类from string import Template
+        # Template(变量)，变量接收一个字符串类型
+        yaml_path = os.path.join(self.base_path, path)
+        with open(yaml_path,encoding="utf-8") as f:
+            # substitute(变量)是指要替换的内容，也就是我们的data
+            # Template(f.read()).substitute(data)内容的返回值是一个字符串
+            change_str=Template(f.read()).substitute(data)
+            '''
+            "method": "post"
+            "url": "https://qyapi.weixin.qq.com/cgi-bin/user/create"
+            "params": "access_token=1234"
+            "json":
+                "userid": tong1234
+                "name": tong
+                "mobile": 13172661165
+                "department": [1,2]
+            '''
+            # 由于change_str虽然改变了变量，但是get_res里面需要传一个字典
+            # 因此需要把change_str改变成字典，通过yaml.safe_load去读取就好了
+            request_data=yaml.safe_load(change_str)
+            # yaml.safe_load方法的最终目的是不是想要获取一个字典
+            # 只要safe_load(变量)，只要符合yaml文件的格式要求，是不是都可以把变量完美的变成python的字典呀
+            # request_data=yaml.safe_load(Template(f.read()).substitute(data))
+
+        return request_data
+
+
 
 if __name__ == "__main__":
     a = BaseApi()
@@ -57,4 +103,4 @@ if __name__ == "__main__":
     #     "json":None
     # }
     # print(a.get_res(request_data).text)
-    print(a.base_path)
+    print(a.get_yaml("data/api/contact/member/add_member_api.yml"))
