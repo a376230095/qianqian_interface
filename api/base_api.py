@@ -9,14 +9,14 @@ import yaml
 
 class BaseApi():
     # 定义一个绝对路径，让其他子类都可以使用
-    base_path=os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+    base_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 
     # 定义一个方法，这个方法虽然在类里面，但不想用类的属性和方法，或者是对象的属性和方法
     @staticmethod
     def a():
         print("abc")
 
-    def get_token(self,secret):
+    def get_token(self, secret):
         id = "ww630f49269e06f865"
         url = f"https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid={id}&corpsecret={secret}"
         res = requests.get(url=url)
@@ -27,7 +27,7 @@ class BaseApi():
         return res.json()["access_token"]
 
     # 封装requests模块，发送请求的内容，获取响应值
-    def get_res(self,request_data:dict):
+    def get_res(self, request_data: dict):
         # 通常获取响应的方法是,但post和get请求是不确定的，不能写死，下面的方法不可以用
         # res=requests.post()
 
@@ -44,21 +44,21 @@ class BaseApi():
         # }
         # request方法里面的变量如果传一个字典的话，会自动去解包成以下的形式
         # **request_data才能进行解包，单独写request_data是不能解包的
-        res=requests.request(**request_data)
+        res = requests.request(**request_data)
         # res=requests.request(method="get",url="https://qyapi.weixin.qq.com/cgi-bin/gettoken",
         #                      params="corpid=ID&corpsecret=SECRET",json=None)
         return res
 
     # 读取yaml文件
-    def get_yaml(self,path):
-        yaml_path = os.path.join(self.base_path,path)
-        with open(yaml_path,encoding="utf-8") as f:
+    def get_yaml(self, path):
+        yaml_path = os.path.join(self.base_path, path)
+        with open(yaml_path, encoding="utf-8") as f:
             # 拿过来的字典需要完善，去完善params参数
-            request_data=yaml.safe_load(f.read())
+            request_data = yaml.safe_load(f.read())
         return request_data
 
     # 使用模板技术，让yaml文件可以使用变量
-    def template(self,path,data:dict):
+    def template1(self, path, data: dict):
         # 函数需要传两个值，一个是路径，yaml文件的路径
         # 函数需要传两个值，一个是字典data，是需要改变的变量的值
         # 比如要改变yaml文件的5个变量值，就需要写5个key和value的值
@@ -69,10 +69,10 @@ class BaseApi():
         # 导入这个类from string import Template
         # Template(变量)，变量接收一个字符串类型
         yaml_path = os.path.join(self.base_path, path)
-        with open(yaml_path,encoding="utf-8") as f:
+        with open(yaml_path, encoding="utf-8") as f:
             # substitute(变量)是指要替换的内容，也就是我们的data
             # Template(f.read()).substitute(data)内容的返回值是一个字符串
-            change_str=Template(f.read()).substitute(data)
+            change_str = Template(f.read()).substitute(data)
             '''
             "method": "post"
             "url": "https://qyapi.weixin.qq.com/cgi-bin/user/create"
@@ -85,17 +85,41 @@ class BaseApi():
             '''
             # 由于change_str虽然改变了变量，但是get_res里面需要传一个字典
             # 因此需要把change_str改变成字典，通过yaml.safe_load去读取就好了
-            request_data=yaml.safe_load(change_str)
+            request_data = yaml.safe_load(change_str)
             # yaml.safe_load方法的最终目的是不是想要获取一个字典
             # 只要safe_load(变量)，只要符合yaml文件的格式要求，是不是都可以把变量完美的变成python的字典呀
             # request_data=yaml.safe_load(Template(f.read()).substitute(data))
 
         return request_data
 
+    def template(self, file_path, p_data,sub=None):
+        yaml_path = os.path.join(self.base_path, file_path)
+        with open(yaml_path, encoding="utf-8") as f:
+            # 需要加一个判断，区分到底sub为不为None
+            if sub:
+                # request_data = yaml.safe_load(Template(f.read()).substitute(data))
+                # 第一步：先要获取到add这个分支
+                add=yaml.safe_load(f)[sub]
+                # add目前是一个字典，但是呢，Template接受的是一个字符串，所以要把add转化成为字符串
+                # 下面的写法不对，不能强制性把add的字典转化成字符串，需要用到yaml.safe_dump
+                # Template(str(add)).substitute(data)
+                str_dict=Template(yaml.safe_dump(add)).substitute(p_data)
+                # str_dict=Template(str(add)).substitute(p_data)
+                request_data=yaml.safe_load(str_dict)
+            else:
+                request_data = yaml.safe_load(Template(f.read()).substitute(p_data))
+            return request_data
+
 
 
 if __name__ == "__main__":
     a = BaseApi()
+    data = {"token": "1223", "userid": "tong1234", "name": "tong", "mobile": "13172661165","department":[1,2]}
+    # b=a.template("data/api/contact/member/add_member_api.yml", data,"add")["json"]["department"]
+    # print(type(b))
+    # print(b)
+    b = a.template("data/api/contact/member/add_member_bianliang_api.yml", data)
+    print(b)
     # request_data={
     #     "method":"get",
     #     "url":"https://qyapi.weixin.qq.com/cgi-bin/gettoken",
@@ -103,4 +127,4 @@ if __name__ == "__main__":
     #     "json":None
     # }
     # print(a.get_res(request_data).text)
-    print(a.get_yaml("data/api/contact/member/add_member_api.yml"))
+    # print(a.get_yaml("data/api/contact/member/add_member_api.yml"))

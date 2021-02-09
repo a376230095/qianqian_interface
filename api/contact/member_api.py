@@ -68,7 +68,7 @@ class Member(BaseApi):
               "mobile":"13172661165","department":[1,2]}
         request_data=self.template(yaml_path,data)
         res=self.get_res(request_data)
-        return res
+        return res.json()
 
 
     # 删除成员
@@ -93,5 +93,5 @@ class Member(BaseApi):
 
 if __name__=="__main__":
     a=Member()
-    print(a.add_member().text)
+    print(a.add_member())
 
