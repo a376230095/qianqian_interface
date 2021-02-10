@@ -6,6 +6,8 @@ from string import Template
 import requests
 import yaml
 
+from common.get_log import log
+
 
 class BaseApi():
     # 定义一个绝对路径，让其他子类都可以使用
@@ -47,7 +49,8 @@ class BaseApi():
         res = requests.request(**request_data)
         # res=requests.request(method="get",url="https://qyapi.weixin.qq.com/cgi-bin/gettoken",
         #                      params="corpid=ID&corpsecret=SECRET",json=None)
-        return res
+        log.info(f"响应的内容:{res.json()}")
+        return res.json()
 
     # 读取yaml文件
     def get_yaml(self, path):
@@ -90,6 +93,7 @@ class BaseApi():
             # 只要safe_load(变量)，只要符合yaml文件的格式要求，是不是都可以把变量完美的变成python的字典呀
             # request_data=yaml.safe_load(Template(f.read()).substitute(data))
 
+
         return request_data
 
     def template(self, file_path, p_data,sub=None):
@@ -108,6 +112,7 @@ class BaseApi():
                 request_data=yaml.safe_load(str_dict)
             else:
                 request_data = yaml.safe_load(Template(f.read()).substitute(p_data))
+            log.info(f"请求格式为：{request_data}")
             return request_data
 
 

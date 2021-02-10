@@ -14,6 +14,8 @@ from common.get_log import log
 
 class Member(BaseApi):
 
+    request_data_path="data/api/contact/member/add_member_api.yml"
+
     # 增加成员
     # def add_member(self):
     #     contact_secret = GetConfig().get_value("weixin", "contact_secret")
@@ -61,25 +63,22 @@ class Member(BaseApi):
     #     return res
 
     # 增加成员
-    def add_member(self):
+    def add_member(self,userid,name,mobile,department):
         contact_secret = GetConfig().get_value("weixin", "contact_secret")
-        yaml_path="data/api/contact/member/add_member_bianliang_api.yml"
-        data={"token":f"{self.get_token(contact_secret)}","userid":"tong1234","name":"tong",
-              "mobile":"13172661165","department":[1,2]}
-        request_data=self.template(yaml_path,data)
+        data={"token":f"{self.get_token(contact_secret)}","userid":userid,"name":name,
+              "mobile":mobile,"department":department}
+        request_data=self.template(self.request_data_path,data,"add")
         res=self.get_res(request_data)
-        return res.json()
+        return res
 
 
     # 删除成员
-    def delete_member(self):
-        secret=GetConfig().get_value("weixin","contact_secret")
-        contact_token=self.get_token(secret)
-
-        url="https://qyapi.weixin.qq.com/cgi-bin/user/delete"
-        params=f"access_token={contact_token}&userid=USERID"
-        res=requests.get(url=url,params=params)
-        return res.json()
+    def delete_member(self,userid):
+        contact_secret=GetConfig().get_value("weixin","contact_secret")
+        data = {"token": f"{self.get_token(contact_secret)}", "userid": userid}
+        request_data=self.template(self.request_data_path,data,"delete")
+        res=self.get_res(request_data)
+        return res
 
 
     # 获取成员
@@ -93,5 +92,5 @@ class Member(BaseApi):
 
 if __name__=="__main__":
     a=Member()
-    print(a.add_member())
-
+    # print(a.add_member())
+    print(a.delete_member())
