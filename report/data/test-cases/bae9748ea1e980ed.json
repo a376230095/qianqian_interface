@@ -1,0 +1,87 @@
+{
+  "uid" : "bae9748ea1e980ed",
+  "name" : "test_delete_member",
+  "fullName" : "test_case.contact.member.test_member.TestMember#test_delete_member",
+  "historyId" : "5246d2d3e740426ec481f6db3840a46e",
+  "time" : {
+    "start" : 1613011050769,
+    "stop" : 1613011050961,
+    "duration" : 192
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "8c09ffc467b575f1",
+      "name" : "log",
+      "source" : "8c09ffc467b575f1.txt",
+      "type" : "text/plain",
+      "size" : 721
+    }, {
+      "uid" : "204861bf513ca5de",
+      "name" : "stderr",
+      "source" : "204861bf513ca5de.txt",
+      "type" : "text/plain",
+      "size" : 727
+    } ],
+    "parameters" : [ ],
+    "hasContent" : true,
+    "stepsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 2
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "severity",
+    "value" : "critical"
+  }, {
+    "name" : "story",
+    "value" : "删除联系人"
+  }, {
+    "name" : "feature",
+    "value" : "通讯录中联系人的增删改查测试"
+  }, {
+    "name" : "parentSuite",
+    "value" : "test_case.contact.member"
+  }, {
+    "name" : "suite",
+    "value" : "test_member"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestMember"
+  }, {
+    "name" : "host",
+    "value" : "LAPTOP-4F3KR3S3"
+  }, {
+    "name" : "thread",
+    "value" : "2052-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "test_case.contact.member.test_member"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "critical",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "bae9748ea1e980ed.json",
+  "parameterValues" : [ ]
+}

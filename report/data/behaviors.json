@@ -1,0 +1,69 @@
+{
+  "uid" : "b1a8273437954620fa374b796ffaacdd",
+  "name" : "behaviors",
+  "children" : [ {
+    "name" : "通讯录中联系人的增删改查测试",
+    "children" : [ {
+      "name" : "增加联系人",
+      "children" : [ {
+        "name" : "test_add_member[userid为空，添加失败]",
+        "uid" : "1d8c8f3235d936bf",
+        "parentUid" : "1c1f2e4d4cfbe435638efcc0e3794d7b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1613011050281,
+          "stop" : 1613011050505,
+          "duration" : 224
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "[1, 2]", "41009", "'missing userid'", "'13072661165'", "'tong1234'", "''" ]
+      }, {
+        "name" : "test_add_member[mobile为空，添加失败]",
+        "uid" : "29f641e322ba70a4",
+        "parentUid" : "1c1f2e4d4cfbe435638efcc0e3794d7b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1613011050521,
+          "stop" : 1613011050758,
+          "duration" : 237
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "[1, 2]", "60129", "'missing mobile'", "''", "'tong12341'", "'tong12341'" ]
+      } ],
+      "uid" : "1c1f2e4d4cfbe435638efcc0e3794d7b"
+    }, {
+      "name" : "删除联系人",
+      "children" : [ {
+        "name" : "test_delete_member",
+        "uid" : "bae9748ea1e980ed",
+        "parentUid" : "5bb03530a3cce84b0f33da096942110d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1613011050769,
+          "stop" : 1613011050961,
+          "duration" : 192
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "test_get_member",
+        "uid" : "9e2c02ed47ac0960",
+        "parentUid" : "5bb03530a3cce84b0f33da096942110d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1613011050966,
+          "stop" : 1613011051174,
+          "duration" : 208
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "5bb03530a3cce84b0f33da096942110d"
+    } ],
+    "uid" : "2a188f6f28b1c5853f6a0a8a7990afd1"
+  } ]
+}

@@ -1,0 +1,5 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Thu Feb 11 10:37:30 CST 2021","Thu Feb 11 10:37:31 CST 2021","208","test_case.contact.member","test_member","TestMember","","","test_get_member",""
+"passed","Thu Feb 11 10:37:30 CST 2021","Thu Feb 11 10:37:30 CST 2021","192","test_case.contact.member","test_member","TestMember","","","test_delete_member",""
+"passed","Thu Feb 11 10:37:30 CST 2021","Thu Feb 11 10:37:30 CST 2021","224","test_case.contact.member","test_member","TestMember","","","test_add_member[userid为空，添加失败]",""
+"passed","Thu Feb 11 10:37:30 CST 2021","Thu Feb 11 10:37:30 CST 2021","237","test_case.contact.member","test_member","TestMember","","","test_add_member[mobile为空，添加失败]",""

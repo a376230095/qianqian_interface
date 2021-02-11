@@ -1,0 +1,3 @@
+[32mINFO    [0m root:test_member.py:56 ------------开始获取联系人--------
+[32mINFO    [0m root:base_api.py:115 请求格式为：{'method': 'get', 'params': 'access_token=qo7PQbd8EYJ9ap1QgRQxlGvfP5QD25mGFfcRyAm4zedzvK5DJFGAPFQow42VlsGpjBwc_oVQrQd_p9vp6DAnXvLDKB5FexyH67dcjI9EOiOeXMi5mo7xtlb5ux8tqRpeoRw2P1L4pQvtU871DLgVEkQ2jrNv34NnVzwH7miq5ke-6bziUcgwhF3j2AmHXUYze7k9WLF0mbJflmIhYtrHuQ&userid=12234', 'url': 'https://qyapi.weixin.qq.com/cgi-bin/user/get'}
+[32mINFO    [0m root:base_api.py:52 响应的内容:{'errcode': 60111, 'errmsg': 'userid not found, hint: [1613011051_161_45ea37a8ca3b8c6babde078d56a23c09], from ip: 125.89.58.116, more info at https://open.work.weixin.qq.com/devtool/query?e=60111', 'department': [], 'order': [], 'is_leader_in_dept': []}

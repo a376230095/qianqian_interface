@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 import logging
 import os
+import time
+
+from common.get_config import cf
 
 
 class GetLog():
@@ -31,9 +34,13 @@ class GetLog():
 
     # 定义文件处理器
     def set_file_handle(self):
-        log_file_path = os.path.join(self.base_path, "log", "log.log")
+        # 定义我们的时间格式，运行代码的时间
+        time_format=time.strftime("%Y-%m-%d_%H", time.localtime(time.time()))+".log"
+        log_file_path = os.path.join(self.base_path, "log", time_format)
         # 创建文件处理器的对象
-        self.file_handle = logging.FileHandler(log_file_path)
+        # 定义一个mode的变量，通过配置文件的方式去改变
+        mode=cf.get_value("log","mode")
+        self.file_handle = logging.FileHandler(log_file_path,mode=mode)
         # 设定文件处理器的日志等级
         self.file_handle.setLevel(logging.INFO)
         # 把格式化器弄到文件处理器中
@@ -42,7 +49,6 @@ class GetLog():
     # 把流处理器放入到我们的生成器中
     # 把文件处理器放到我摸的生成器中
     def get_logger(self):
-        pass
         # 先运行定义流处理器
         # 调用这个方法，1，先创建流处理器对象，由于已经写了self.流处理对象
         # 因为这个流处理器需要有日志等级，所以要设置日志等级，就在第20行代码执行

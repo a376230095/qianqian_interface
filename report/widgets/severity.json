@@ -1,0 +1,41 @@
+[ {
+  "uid" : "bae9748ea1e980ed",
+  "name" : "test_delete_member",
+  "time" : {
+    "start" : 1613011050769,
+    "stop" : 1613011050961,
+    "duration" : 192
+  },
+  "status" : "passed",
+  "severity" : "critical"
+}, {
+  "uid" : "9e2c02ed47ac0960",
+  "name" : "test_get_member",
+  "time" : {
+    "start" : 1613011050966,
+    "stop" : 1613011051174,
+    "duration" : 208
+  },
+  "status" : "passed",
+  "severity" : "critical"
+}, {
+  "uid" : "29f641e322ba70a4",
+  "name" : "test_add_member[mobile为空，添加失败]",
+  "time" : {
+    "start" : 1613011050521,
+    "stop" : 1613011050758,
+    "duration" : 237
+  },
+  "status" : "passed",
+  "severity" : "blocker"
+}, {
+  "uid" : "1d8c8f3235d936bf",
+  "name" : "test_add_member[userid为空，添加失败]",
+  "time" : {
+    "start" : 1613011050281,
+    "stop" : 1613011050505,
+    "duration" : 224
+  },
+  "status" : "passed",
+  "severity" : "blocker"
+} ]

@@ -32,6 +32,9 @@ class GetConfig():
         self.config.set(section,option,value)
         # self.config.set(
 
+# 先创建配置文件的对象，这个对象就拥有这个类中的所有的方法
+#
+cf=GetConfig()
 
 
 if __name__=="__main__":

@@ -1,0 +1,87 @@
+{
+  "uid" : "9e2c02ed47ac0960",
+  "name" : "test_get_member",
+  "fullName" : "test_case.contact.member.test_member.TestMember#test_get_member",
+  "historyId" : "99883c3b9aa508ba0bfe98b1f77e27e4",
+  "time" : {
+    "start" : 1613011050966,
+    "stop" : 1613011051174,
+    "duration" : 208
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "63d60f456da43ec7",
+      "name" : "log",
+      "source" : "63d60f456da43ec7.txt",
+      "type" : "text/plain",
+      "size" : 774
+    }, {
+      "uid" : "7c833c92c3ac17d7",
+      "name" : "stderr",
+      "source" : "7c833c92c3ac17d7.txt",
+      "type" : "text/plain",
+      "size" : 780
+    } ],
+    "parameters" : [ ],
+    "hasContent" : true,
+    "stepsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 2
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "severity",
+    "value" : "critical"
+  }, {
+    "name" : "story",
+    "value" : "删除联系人"
+  }, {
+    "name" : "feature",
+    "value" : "通讯录中联系人的增删改查测试"
+  }, {
+    "name" : "parentSuite",
+    "value" : "test_case.contact.member"
+  }, {
+    "name" : "suite",
+    "value" : "test_member"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestMember"
+  }, {
+    "name" : "host",
+    "value" : "LAPTOP-4F3KR3S3"
+  }, {
+    "name" : "thread",
+    "value" : "2052-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "test_case.contact.member.test_member"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "critical",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "9e2c02ed47ac0960.json",
+  "parameterValues" : [ ]
+}

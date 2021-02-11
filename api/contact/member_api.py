@@ -82,8 +82,13 @@ class Member(BaseApi):
 
 
     # 获取成员
-    def get_member(self):
-        pass
+    def get_member(self,userid):
+        contact_secret=GetConfig().get_value("weixin","contact_secret")
+        data = {"token": f"{self.get_token(contact_secret)}", "userid": userid}
+        request_data=self.template(self.request_data_path,data,"get")
+        res=self.get_res(request_data)
+        return res
+
 
     # 编辑成员
     def edit_member(self):

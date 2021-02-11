@@ -1,0 +1,65 @@
+{
+  "uid" : "ab17fc5a4eb3bca4b216b548c7f9fcbc",
+  "name" : "timeline",
+  "children" : [ {
+    "name" : "LAPTOP-4F3KR3S3",
+    "children" : [ {
+      "name" : "2052-MainThread",
+      "children" : [ {
+        "name" : "test_add_member[userid为空，添加失败]",
+        "uid" : "1d8c8f3235d936bf",
+        "parentUid" : "48ecc263a665ec1ac304187706c8537b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1613011050281,
+          "stop" : 1613011050505,
+          "duration" : 224
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "[1, 2]", "41009", "'missing userid'", "'13072661165'", "'tong1234'", "''" ]
+      }, {
+        "name" : "test_get_member",
+        "uid" : "9e2c02ed47ac0960",
+        "parentUid" : "48ecc263a665ec1ac304187706c8537b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1613011050966,
+          "stop" : 1613011051174,
+          "duration" : 208
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "test_delete_member",
+        "uid" : "bae9748ea1e980ed",
+        "parentUid" : "48ecc263a665ec1ac304187706c8537b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1613011050769,
+          "stop" : 1613011050961,
+          "duration" : 192
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "test_add_member[mobile为空，添加失败]",
+        "uid" : "29f641e322ba70a4",
+        "parentUid" : "48ecc263a665ec1ac304187706c8537b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1613011050521,
+          "stop" : 1613011050758,
+          "duration" : 237
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "[1, 2]", "60129", "'missing mobile'", "''", "'tong12341'", "'tong12341'" ]
+      } ],
+      "uid" : "48ecc263a665ec1ac304187706c8537b"
+    } ],
+    "uid" : "0706cb0d80edbd021313705f94e7d421"
+  } ]
+}
