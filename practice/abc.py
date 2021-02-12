@@ -4,3 +4,7 @@
 from practice.self import add
 
 print(add(3,3))
+
+data={
+
+}

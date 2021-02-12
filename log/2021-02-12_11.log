@@ -1,0 +1,1 @@
+2021-02-12-11:17|INFO  |base_api.py:120|请求格式为：{'json': {'department': [1, 2], 'gender': None, 'mobile': 13172661165, 'name': 'tong', 'position': None, 'userid': 'tong1234'}, 'method': 'post', 'params': 'access_token=1223', 'url': 'https://qyapi.weixin.qq.com/cgi-bin/user/create'}

@@ -10,6 +10,8 @@ add:
         "name": ${name}
         "mobile": ${mobile}
         "department": ${department}
+        "position": ${position}
+        "gender": ${gender}
 
 # 删除联系人
 delete:
@@ -22,3 +24,6 @@ get:
     method: "get"
     "url": "https://qyapi.weixin.qq.com/cgi-bin/user/get"
     "params": "access_token=${token}&userid=${userid}"
+
+
+

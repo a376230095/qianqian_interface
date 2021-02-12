@@ -49,6 +49,7 @@ class BaseApi():
         res = requests.request(**request_data)
         # res=requests.request(method="get",url="https://qyapi.weixin.qq.com/cgi-bin/gettoken",
         #                      params="corpid=ID&corpsecret=SECRET",json=None)
+        log.info(res.request.body)
         log.info(f"响应的内容:{res.json()}")
         return res.json()
 
@@ -107,11 +108,16 @@ class BaseApi():
                 # add目前是一个字典，但是呢，Template接受的是一个字符串，所以要把add转化成为字符串
                 # 下面的写法不对，不能强制性把add的字典转化成字符串，需要用到yaml.safe_dump
                 # Template(str(add)).substitute(data)
+
                 str_dict=Template(yaml.safe_dump(add)).substitute(p_data)
                 # str_dict=Template(str(add)).substitute(p_data)
                 request_data=yaml.safe_load(str_dict)
             else:
                 request_data = yaml.safe_load(Template(f.read()).substitute(p_data))
+            # 把"None" 转化成None
+            for i in request_data['json'].keys():
+                if request_data['json'][i] == 'None':
+                    request_data['json'][i] = None
             log.info(f"请求格式为：{request_data}")
             return request_data
 
@@ -119,17 +125,10 @@ class BaseApi():
 
 if __name__ == "__main__":
     a = BaseApi()
-    data = {"token": "1223", "userid": "tong1234", "name": "tong", "mobile": "13172661165","department":[1,2]}
-    # b=a.template("data/api/contact/member/add_member_api.yml", data,"add")["json"]["department"]
-    # print(type(b))
-    # print(b)
-    b = a.template("data/api/contact/member/add_member_bianliang_api.yml", data)
+    data = {"token": "1223", "userid": "tong1234", "name": "tong", "mobile": "13172661165","department":[1,2],"position":"None",
+              "gender":"None"}
+
+    b = a.template("data/api/contact/member/add_member_api.yml", data,"add")
     print(b)
-    # request_data={
-    #     "method":"get",
-    #     "url":"https://qyapi.weixin.qq.com/cgi-bin/gettoken",
-    #     "params":"corpid=ID&corpsecret=SECRET",
-    #     "json":None
-    # }
-    # print(a.get_res(request_data).text)
-    # print(a.get_yaml("data/api/contact/member/add_member_api.yml"))
+
+

@@ -15,7 +15,7 @@ class GetLog():
         # logger表示一个生成器的对象
         self.logger = logging.getLogger()
         # 设置一个最低的默认的日志等级，我们的生成器本身默认的等级
-        self.logger.setLevel(logging.INFO)
+        self.logger.setLevel(logging.DEBUG)
         # self.logger.setLevel(10)
         # 定义一个格式化器，让处理器来使用
         self.formatter = logging.Formatter("%(asctime)s|%(levelname)-6s|%(filename)s:%(lineno)-3s|%(message)s",
@@ -26,7 +26,7 @@ class GetLog():
         # 创建流处理器的对象
         self.stream_handle = logging.StreamHandler()
         # 流处理器也要日志等级
-        self.stream_handle.setLevel(logging.INFO)
+        self.stream_handle.setLevel(logging.DEBUG)
         # 流处理器是需要有格式的
         self.stream_handle.setFormatter(self.formatter)
         # 把流处理器弄到生成器中
@@ -42,7 +42,7 @@ class GetLog():
         mode=cf.get_value("log","mode")
         self.file_handle = logging.FileHandler(log_file_path,mode=mode)
         # 设定文件处理器的日志等级
-        self.file_handle.setLevel(logging.INFO)
+        self.file_handle.setLevel(logging.DEBUG)
         # 把格式化器弄到文件处理器中
         self.file_handle.setFormatter(self.formatter)
 

@@ -63,11 +63,13 @@ class Member(BaseApi):
     #     return res
 
     # 增加成员
-    def add_member(self,userid,name,mobile,department):
+    def add_member(self,userid,name,mobile,department,gender,position):
         contact_secret = GetConfig().get_value("weixin", "contact_secret")
         data={"token":f"{self.get_token(contact_secret)}","userid":userid,"name":name,
-              "mobile":mobile,"department":department}
+              "mobile":mobile,"department":department,"position":position,
+              "gender":gender}
         request_data=self.template(self.request_data_path,data,"add")
+        # 打印一下request_data，看看None值有没有传进去
         res=self.get_res(request_data)
         return res
 
@@ -97,5 +99,6 @@ class Member(BaseApi):
 
 if __name__=="__main__":
     a=Member()
-    # print(a.add_member())
-    print(a.delete_member())
+    # print(a.add_member("tong1234","tong1234","13172661165",[1,2],"manager","1"))
+    print(a.add_member(None,"tong12345","13222661122",[1,2],"",""))
+    # print(a.delete_member())
