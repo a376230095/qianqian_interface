@@ -1,0 +1,24 @@
+# 增加联系人的参数化
+# userid,name,mobile,department,errcode,errmsg
+add:
+  # 参数化的内容
+  data:
+    # 正常逻辑的，所有参数非空，非唯一，结果正确
+    - ["tong1234567890","tong1234567890","14013172600",[1,2],"","",0,"created"]
+    # userid为空，其他参数正常，结果不ok
+    - ["","tong12345671890","14013172601",[1,2],"","",41009,"missing userid"]
+    # name为空，其他参数正常，结果不ok
+    - ["tong22345671890","","14013172602",[1,2],"","",60112,"invalid name"]
+    # departmanet为空，结果不ok
+    - ["tong1234567890","tong1234567890","14013172600","","","",40066,"invalid party list"]
+  # 标题的内容：
+  ids:
+    - "正常逻辑的，所有参数非空，非唯一，结果正确"
+    - "userid为空，其他参数正常，结果不ok"
+    - "name为空，其他参数正常，结果不ok"
+    - "departmanet为空，结果不ok"
+
+
+get:
+
+delete:

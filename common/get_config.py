@@ -27,6 +27,10 @@ class GetConfig():
         value=self.config.get(section,option)
         return value
 
+    def get_int(self,section,option):
+        value=self.config.getint(section,option)
+        return value
+
     # 设置一下value的值
     def set_value(self,section,option,value):
         self.config.set(section,option,value)

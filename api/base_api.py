@@ -2,10 +2,8 @@
 # 这是父类，其他类去继承他
 import os
 from string import Template
-
 import requests
 import yaml
-
 from common.get_log import log
 
 
@@ -115,9 +113,13 @@ class BaseApi():
             else:
                 request_data = yaml.safe_load(Template(f.read()).substitute(p_data))
             # 把"None" 转化成None
-            for i in request_data['json'].keys():
-                if request_data['json'][i] == 'None':
-                    request_data['json'][i] = None
+            # request_data.get("json")不会抛异常，当request_data.get("json")存在，就运行下面的for代码
+            # 当request_data.get("json")为None,if None，下面的for代码就不会运行
+            if request_data.get("json"):
+                for i in request_data['json'].keys():
+                    if request_data['json'][i] == 'None':
+                        request_data['json'][i] = None
+
             log.info(f"请求格式为：{request_data}")
             return request_data
 

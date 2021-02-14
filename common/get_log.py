@@ -9,24 +9,27 @@ from common.get_config import cf
 class GetLog():
     # 定义绝对路径(项目的根路径)
     base_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+    # 定义一个log日志的等级
+    log_level=cf.get_int("log","log_level")
 
     # 初始化我们的生成器对象，log生成器的对象
     def __init__(self):
         # logger表示一个生成器的对象
         self.logger = logging.getLogger()
         # 设置一个最低的默认的日志等级，我们的生成器本身默认的等级
-        self.logger.setLevel(logging.DEBUG)
+        self.logger.setLevel(self.log_level)
         # self.logger.setLevel(10)
         # 定义一个格式化器，让处理器来使用
         self.formatter = logging.Formatter("%(asctime)s|%(levelname)-6s|%(filename)s:%(lineno)-3s|%(message)s",
                                            "%Y-%m-%d-%H:%M")
+
 
     # 定义流处理器，并添加流处理器到生成器
     def set_stream_handle(self):
         # 创建流处理器的对象
         self.stream_handle = logging.StreamHandler()
         # 流处理器也要日志等级
-        self.stream_handle.setLevel(logging.DEBUG)
+        self.stream_handle.setLevel(self.log_level)
         # 流处理器是需要有格式的
         self.stream_handle.setFormatter(self.formatter)
         # 把流处理器弄到生成器中
@@ -42,7 +45,7 @@ class GetLog():
         mode=cf.get_value("log","mode")
         self.file_handle = logging.FileHandler(log_file_path,mode=mode)
         # 设定文件处理器的日志等级
-        self.file_handle.setLevel(logging.DEBUG)
+        self.file_handle.setLevel(self.log_level)
         # 把格式化器弄到文件处理器中
         self.file_handle.setFormatter(self.formatter)
 

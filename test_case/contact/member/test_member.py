@@ -28,19 +28,40 @@ class TestMember():
     #     assert "userid not found" in res["errmsg"]
 
     #
+    # @allure.severity(allure.severity_level.BLOCKER)
+    # @allure.story("增加联系人")
+    # @pytest.mark.parametrize(("userid,name,mobile,department,postion,gender,errcode,errmsg"),[
+    #     ["","tong1234","13072661165",[1,2],"","",41009,"missing userid"],
+    #     ["tong12341", "tong12341","" , [1, 2],"","",60129,"missing mobile"]
+    # ],ids=["userid为空，添加失败","mobile为空，添加失败"])
+    # def test_add_member(self,userid,name,mobile,department,postion,gender,errcode,errmsg):
+    #     # userid为空，添加失败
+    #     # mobile为空，添加失败
+    #     log.info("------------开始增加联系人--------")
+    #     res = self.member.add_member(userid,name,mobile,department,postion,gender)
+    #     assert errcode == res["errcode"]
+    #     assert errmsg in res["errmsg"]
+
+    # 获取data数据和ids的数据
+    add_data=member.get_yaml("data/api/contact/member/member_para_data.yml")["add"]["data"]
+    add_ids=member.get_yaml("data/api/contact/member/member_para_data.yml")["add"]["ids"]
+
+    def setup(self):
+        # 删除联系人
+        self.member.delete_member("tong1234567890")
+
     @allure.severity(allure.severity_level.BLOCKER)
     @allure.story("增加联系人")
-    @pytest.mark.parametrize(("userid,name,mobile,department,errcode,errmsg"),(
-        ["","tong1234","13072661165",[1,2],41009,"missing userid"],
-        ["tong12341", "tong12341","" , [1, 2],60129,"missing mobile"]
-    ),ids=["userid为空，添加失败","mobile为空，添加失败"])
-    def test_add_member(self,userid,name,mobile,department,errcode,errmsg):
+    @pytest.mark.parametrize(("userid,name,mobile,department,postion,gender,errcode,errmsg"),
+    add_data,ids=add_ids)
+    def test_add_member(self,userid,name,mobile,department,postion,gender,errcode,errmsg):
         # userid为空，添加失败
         # mobile为空，添加失败
         log.info("------------开始增加联系人--------")
-        res = self.member.add_member(userid,name,mobile,department)
+        res = self.member.add_member(userid,name,mobile,department,postion,gender)
         assert errcode == res["errcode"]
         assert errmsg in res["errmsg"]
+
 
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.story("删除联系人")
